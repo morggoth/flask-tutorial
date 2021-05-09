@@ -6,4 +6,15 @@ from app import app
 def index():
     # Mock the user object
     user = {'username': 'Morggoth'}
-    return render_template('index.html', title='Home', user=user)
+    # Mock the posts object
+    posts = [
+        {
+            'author': {'username': 'Morggoth'},
+            'body': 'Breaking news: the Sun over the SPb'
+        },
+        {
+            'author': {'username': 'Alcopenguin'},
+            'body': 'Schizophrenia is not a verdict'
+        }
+    ]
+    return render_template('index.html', title='Home', user=user, posts=posts)
