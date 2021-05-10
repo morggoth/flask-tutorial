@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <ht>Sing in</ht>
+    {# When the action is empty, a form is submitted to the same URL as a current page #}
+    {# _novalidate_ attribute tells to the browser to not apply validation to the fields in this form #}
+    <form action="" method="post" novalidate>
+        {# hidden_tag is used for protection against CSRF attack; to use it you have to set the SECRET_KEY parameter in the app config #}
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.username.label }}<br>
+            {{ form.username(size=32) }}<br>
+            {% for error in form.username.errors %}
+            <span style="color:red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password(size=32) }}<br>
+            {% for error in form.password.errors %}
+            <span style="color:red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}
